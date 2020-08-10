@@ -2,10 +2,7 @@ function isValidURL(string) {
   let res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
   return (res !== null)
 };
-
 function rez_sitemap(){
-document.getElementById("one").innerHTML="Ждите.."
-document.getElementById("one").style.background = "red";
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
 let k=0
@@ -26,34 +23,48 @@ for(k;k<stringArray.length; k++){
 		}else{
 			url = url1
 		}
-		const xml = new window.XMLHttpRequest()
-		xml.open("GET", url, false)
-		xml.send(null);
-		let parser = new DOMParser()
-		let xml1 = parser.parseFromString(xml.response, 'application/xml')
+			const xml = new window.XMLHttpRequest()
+		xml.open("GET", url, true)
+		xml.send();
+		xml.onreadystatechange = function() { // (3)
+		  if (xml.readyState != 4) return;
 
-		let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
-		if(urls==null){
-			arrayHtml += '<p><font color="red">Адрес №'+k+' <strong>Нет файла sitemap.xml</strong></font></p>';
-			arrayHtml+='<hr>'
-		document.getElementById("work_area").innerHTML=arrayHtml
-		}else{
-			arrayHtml += '<p>Адрес №'+k+'</p><h1> '+host +'</h1>';
-			for (var i=0; i<urls.length; i++) {
-			  let element = urls[i]
-				arrayHtml += '<a target="_blanc" href="' + element + '" >'+ element + '</a><br>'
-			}
+			document.getElementById("work_area").style.display='inline-block';
+			document.getElementById("one").innerHTML="Искать все ссылки"
+			document.getElementById("one").style.background = "#2b995b";
+
+		  if (xml.status != 200) {
+			arrayHtml += '<p><font color="red">Адрес №'+k+' Не удалось установить соединение: <strong>'+ host + '</strong></font></p>';
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
+		  } else {
+			let parser = new DOMParser()
+			let xml1 = parser.parseFromString(xml.response, 'application/xml')
+
+			let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
+			if(urls==null){
+				arrayHtml += '<p><font color="red">Адрес №'+k+' <strong>Нет файла sitemap.xml</strong></font></p>';
+				arrayHtml+='<hr>'
+			document.getElementById("work_area").innerHTML=arrayHtml
+			}else{
+				arrayHtml += '<p>Адрес №'+k+'</p><h1> '+host +'</h1>';
+				for (var i=0; i<urls.length; i++) {
+				  let element = urls[i]
+					arrayHtml += '<a target="_blanc" href="' + element + '" >'+ element + '</a><br>'
+				}
+				arrayHtml+='<hr>'
+				document.getElementById("work_area").innerHTML=arrayHtml
+			}
+			}
+
 		}
+		document.getElementById("one").innerHTML="Ждите.."
+		document.getElementById("one").style.background = "red";
 
 	}
 
 }
-document.getElementById("work_area").style.display='inline-block';
-document.getElementById("work_area").innerHTML +='<h1>Поиск завершен!</h1>';
-document.getElementById("one").innerHTML="Искать все ссылки"
-document.getElementById("one").style.background = "#2b995b";
+
 }
 
 
@@ -83,7 +94,7 @@ for(k;k<stringArray.length; k++){
 			url = url1
 		}
 		const xml = new window.XMLHttpRequest()
-		xml.open("GET", url, false)
+		xml.open("GET", url, true)
 		xml.send(null);
 		let parser = new DOMParser()
 		let xml1 = parser.parseFromString(xml.response, 'application/xml')
