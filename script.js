@@ -8,7 +8,7 @@ let arrayHtml="";
 let k=0
 for(k;k<stringArray.length; k++){
 	if(!isValidURL(stringArray[k])){
-		arrayHtml += '<p><font color="red">Адрес №'+k+' Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
+		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
 		document.getElementById("work_area").innerHTML=arrayHtml
 	}else{
@@ -34,7 +34,7 @@ for(k;k<stringArray.length; k++){
 			document.getElementById("one").style.background = "#2b995b";
 
 		  if (xml.status != 200) {
-			arrayHtml += '<p><font color="red">Адрес №'+k+' Не удалось установить соединение: <strong>'+ host + '</strong></font></p>';
+			arrayHtml += '<p><font color="red">Не удалось установить соединение: <strong>'+ host + '</strong></font></p>';
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
 		  } else {
@@ -47,7 +47,7 @@ for(k;k<stringArray.length; k++){
 				arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
 			}else{
-				arrayHtml += '<p>Адрес №'+k+'</p><h1> '+host +'</h1>';
+				arrayHtml += '<h1> '+host +'</h1>';
 				for (var i=0; i<urls.length; i++) {
 				  let element = urls[i]
 					arrayHtml += '<a target="_blanc" href="' + element + '" >'+ element + '</a><br>'
@@ -70,8 +70,6 @@ for(k;k<stringArray.length; k++){
 
 
 function rez_random(){
-	document.getElementById("two").innerHTML="Ждите.."
-document.getElementById("two").style.background = "red";
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
 let element=[];
@@ -95,31 +93,34 @@ for(k;k<stringArray.length; k++){
 		}
 		const xml = new window.XMLHttpRequest()
 		xml.open("GET", url, true)
-		xml.send(null);
-		let parser = new DOMParser()
-		let xml1 = parser.parseFromString(xml.response, 'application/xml')
+		xml.send();
+		xml.onreadystatechange = function() { // (3)
+		  if (xml.readyState != 4) return;
+		document.getElementById("rnd_area").style.display='inline-block';
+		document.getElementById("two").innerHTML="Случайная ссылка"
+		document.getElementById("two").style.background = "#2b995b";
 
-		let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
-		if(urls==null){
-			arrayHtml += '<p><font color="red">Адрес №'+k+' <strong>Нет файла sitemap.xml</strong></font></p>';
-		document.getElementById("rnd_area").innerHTML=arrayHtml
-		}else{
-			for (var i=0; i<urls.length; i++) {
-			  element[index] = urls[i]
-			  index++
-			}
+		  if (xml.status == 200) {
+				let parser = new DOMParser()
+				let xml1 = parser.parseFromString(xml.response, 'application/xml')
+				let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
+				if(urls!=null){
+					for (var i=0; i<urls.length; i++) {
+					  element[index] = urls[i]
+					  index++
+					}
 	
+				}
+				if (index>0){
+					let randval = Math.floor(Math.random() * index)
+					document.getElementById("rnd_area").innerHTML ='<a target="_blanc" href="' + element[randval] + '" ><h1> Случайная ссылка!</h1></a>';
+				}
+		  }
+
 		}
+		document.getElementById("two").innerHTML="Ждите.."
+		document.getElementById("two").style.background = "red";
 	}
 
 }
-if (index>0){
-	let randval = Math.floor(Math.random() * index)
-	document.getElementById("rnd_area").innerHTML ='<a target="_blanc" href="' + element[randval] + '" ><h1> Случайная ссылка!</h1></a>';
-}else{
-	alert('Нет доступных ссылок!')
-}
-document.getElementById("rnd_area").style.display='inline-block';
-document.getElementById("two").innerHTML="Случайная ссылка"
-document.getElementById("two").style.background = "#2b995b";
 }
