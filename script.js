@@ -16,9 +16,12 @@ for(k;k<stringArray.length; k++){
 		let url = new URL(stringArray[k])
 		let host = url.hostname
 		let url1 = new URL(stringArray[k])
+		let url2 = new URL(stringArray[k])
+		url1 = 'https://cors-anywhere.herokuapp.com/' + url
+		url = url1
 		if(url.pathname=="/"){
-			 url1 = url +'sitemap.xml'
-			 url=url1
+			 url2 = url +'sitemap.xml'
+			 url=url2
 		}
 		let error=0;
 		const xml = new window.XMLHttpRequest()
