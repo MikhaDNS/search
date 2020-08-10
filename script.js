@@ -34,8 +34,10 @@ for(k;k<stringArray.length; k++){
 			error=1;
 		}
 		if(error==0){
-			const regexp = /(?<=<[Ll][Oo][Cc]>)([\s\S]*?)(?=<\/[Ll][Oo][Cc]>)/g
-			const urls = xml.response.match(regexp)
+			let parser = new DOMParser()
+			let xml1 = parser.parseFromString(xml.response, 'application/xml')
+
+			let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
 			if(urls==null){
 				arrayHtml += '<p><font color="red">Адрес №'+k+' <strong>Нет файла sitemap.xml</strong></font></p>';
 				arrayHtml+='<hr>'
@@ -57,10 +59,6 @@ document.getElementById("work_area").innerHTML +='<h1>Поиск заверше�
 }
 
 
-
-function dff(){
-	alert('helloe')
-}
 
 
 
@@ -94,8 +92,10 @@ for(k;k<stringArray.length; k++){
 			error=1;
 		}
 		if(error==0){
-			const regexp = /(?<=<[Ll][Oo][Cc]>)([\s\S]*?)(?=<\/[Ll][Oo][Cc]>)/g
-			const urls = xml.response.match(regexp)
+						let parser = new DOMParser()
+			let xml1 = parser.parseFromString(xml.response, 'application/xml')
+
+			let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
 			if(urls==null){
 				arrayHtml += '<p><font color="red">Адрес №'+k+' <strong>Нет файла sitemap.xml</strong></font></p>';
 			document.getElementById("rnd_area").innerHTML=arrayHtml
@@ -116,6 +116,16 @@ if (index>0){
 	alert('Нет доступных ссылок!')
 }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
