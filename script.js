@@ -124,3 +124,55 @@ for(k;k<stringArray.length; k++){
 
 }
 }
+
+
+
+
+
+
+function rez_robots(){
+let stringArray = document.getElementById('textarea').value.split('\n');
+let arrayHtml="";
+let k=0
+for(k;k<stringArray.length; k++){
+	if(!isValidURL(stringArray[k])){
+		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
+		arrayHtml+='<hr>'
+		document.getElementById("work_area").innerHTML=arrayHtml
+	}else{
+		let url = new URL(stringArray[k])
+		let host = url.hostname
+		let url1 = new URL(stringArray[k])
+		let urlsave = new URL(stringArray[k])
+		urlsave=url + 'robots.txt'
+		url1 = 'https://cors-anywhere.herokuapp.com/' + url + 'robots.txt'
+		url = url1
+		const xml = new window.XMLHttpRequest()
+		xml.open("GET", url, true)
+		xml.send();
+		xml.onreadystatechange = function() { // (3)
+		  if (xml.readyState != 4) return;
+
+			document.getElementById("work_area").style.display='inline-block';
+			document.getElementById("three").innerHTML="Искать robots"
+			document.getElementById("three").style.background = "#2b995b";
+
+		  if (xml.status != 200) {
+			arrayHtml += '<p><font color="red">Не удалось установить соединение: <strong>'+ host + '</strong></font></p>';
+			arrayHtml+='<hr>'
+			document.getElementById("work_area").innerHTML=arrayHtml
+		  } else {
+			arrayHtml += '<a target="_blank" href="' + urlsave + '" >'+ urlsave + '</a><br>'
+			arrayHtml+='<hr>'
+			document.getElementById("work_area").innerHTML=arrayHtml
+			}
+
+		}
+		document.getElementById("three").innerHTML="Ждите.."
+		document.getElementById("three").style.background = "red";
+
+	}
+
+}
+
+}
