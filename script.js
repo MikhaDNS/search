@@ -4,7 +4,6 @@ function isValidURL(string) {
 };
 
 function rez_sitemap(){
-	document.getElementById("work_area").style.display='inline-block';
 document.getElementById("one").innerHTML="Ждите.."
 document.getElementById("one").style.background = "red";
 let stringArray = document.getElementById('textarea').value.split('\n');
