@@ -61,7 +61,6 @@ for(k;k<stringArray.length; k++){
 		}
 
 }
-document.getElementById("work_area").style.display='inline-block';
 document.getElementById("work_area").innerHTML +='<h1>Поиск завершен!</h1>';
 document.getElementById("one").innerHTML="Искать все ссылки"
 document.getElementById("one").style.background = "#2b995b";
@@ -128,7 +127,6 @@ if (index>0){
 }else{
 	alert('Нет доступных ссылок!')
 }
-document.getElementById("rnd_area").style.display='inline-block';
 document.getElementById("two").innerHTML="Случайная ссылка"
 document.getElementById("two").style.background = "#2b995b";
 }
