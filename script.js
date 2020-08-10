@@ -27,7 +27,6 @@ for(k;k<stringArray.length; k++){
 		try{
 			xml.send(null);
 		}catch(e){
-			alert(e)
 			arrayHtml += '<p><font color="red">Адрес №'+k+' Не удалось установить соединение: <strong>'+ host + '</strong></font></p>';
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
