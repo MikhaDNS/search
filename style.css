@@ -3,17 +3,27 @@
 	 width:100%;
 	 margin:0;
 	 padding:0;
-	 background: #00BFFF;
+	 background: #00BFFF url('planet.png');
+	 background-size: 50px 50px;
+	 font-size: 20px;
  }
  
  textarea {
-	 margin: 20px 20px;
+	 margin: 20px;
     width: 50%; /* Ширина поля в процентах */
     height: 50%; /* Высота поля в пикселах */
     resize: none; /* Запрещаем изменять размер */
 	font-family: estrangelo edessa; 
 	font-size: 20px;
    } 
+ div{
+	  margin: 20px;
+	  background: #7FFFD4;
+	  display: inline-block;
+	  padding:10px;
+	  vertical-align: top;
+	  border: 3px solid #00008B;
+ }
 button{
 border-radius: 4px;
 -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.08);
@@ -26,7 +36,7 @@ text-align: center;
 font-family: Arial, Helvetica, sans-serif;
 font-size: 14px;
 padding: 8px 16px;
-margin: 20px 20px;
+margin: 20px;
 text-decoration: none;
 text-shadow: 0 1px 1px rgba(0, 0, 0, 0.075);
 -webkit-transition: background-color 0.1s linear;
@@ -38,8 +48,4 @@ font-weight:bold;
 button{
 background-color: rgb( 43, 153, 91 );
 border: 1px solid rgb( 33, 126, 74 );
-}
-        
-button:hover {
-background-color: rgb( 75, 183, 141 );
 }
