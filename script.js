@@ -26,39 +26,28 @@ for(k;k<stringArray.length; k++){
 		}else{
 			url = url1
 		}
-		let error=0;
 		const xml = new window.XMLHttpRequest()
 		xml.open("GET", url, false)
+		xml.send(null);
+		let parser = new DOMParser()
+		let xml1 = parser.parseFromString(xml.response, 'application/xml')
 
-		try{
-			xml.send(null);
-		}catch(e){
-			alert(e)
-			arrayHtml += '<p><font color="red">Адрес №'+k+' Не удалось установить соединение: <strong>'+ host + '</strong></font></p>';
+		let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
+		if(urls==null){
+			arrayHtml += '<p><font color="red">Адрес №'+k+' <strong>Нет файла sitemap.xml</strong></font></p>';
+			arrayHtml+='<hr>'
+		document.getElementById("work_area").innerHTML=arrayHtml
+		}else{
+			arrayHtml += '<p>Адрес №'+k+'</p><h1> '+host +'</h1>';
+			for (var i=0; i<urls.length; i++) {
+			  let element = urls[i]
+				arrayHtml += '<a target="_blanc" href="' + element + '" >'+ element + '</a><br>'
+			}
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
-			error=1;
 		}
-		if(error==0){
-			let parser = new DOMParser()
-			let xml1 = parser.parseFromString(xml.response, 'application/xml')
 
-			let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
-			if(urls==null){
-				arrayHtml += '<p><font color="red">Адрес №'+k+' <strong>Нет файла sitemap.xml</strong></font></p>';
-				arrayHtml+='<hr>'
-			document.getElementById("work_area").innerHTML=arrayHtml
-			}else{
-				arrayHtml += '<p>Адрес №'+k+'</p><h1> '+host +'</h1>';
-				for (var i=0; i<urls.length; i++) {
-				  let element = urls[i]
-					arrayHtml += '<a target="_blanc" href="' + element + '" >'+ element + '</a><br>'
-				}
-				arrayHtml+='<hr>'
-				document.getElementById("work_area").innerHTML=arrayHtml
-			}
-		}
-		}
+	}
 
 }
 document.getElementById("work_area").style.display='inline-block';
@@ -93,33 +82,24 @@ for(k;k<stringArray.length; k++){
 		}else{
 			url = url1
 		}
-		let error=0;
 		const xml = new window.XMLHttpRequest()
 		xml.open("GET", url, false)
+		xml.send(null);
+		let parser = new DOMParser()
+		let xml1 = parser.parseFromString(xml.response, 'application/xml')
 
-		try{
-			xml.send(null);
-		}catch(e){
-			arrayHtml += '<p><font color="red">Адрес №'+k+' Не удалось установить соединение: <strong>'+ host + '</strong></font></p>';
-			document.getElementById("rnd_area").innerHTML=arrayHtml
-			error=1;
-		}
-		if(error==0){
-						let parser = new DOMParser()
-			let xml1 = parser.parseFromString(xml.response, 'application/xml')
-
-			let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
-			if(urls==null){
-				arrayHtml += '<p><font color="red">Адрес №'+k+' <strong>Нет файла sitemap.xml</strong></font></p>';
-			document.getElementById("rnd_area").innerHTML=arrayHtml
-			}else{
-				for (var i=0; i<urls.length; i++) {
-				  element[index] = urls[i]
-				  index++
-				}
+		let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
+		if(urls==null){
+			arrayHtml += '<p><font color="red">Адрес №'+k+' <strong>Нет файла sitemap.xml</strong></font></p>';
+		document.getElementById("rnd_area").innerHTML=arrayHtml
+		}else{
+			for (var i=0; i<urls.length; i++) {
+			  element[index] = urls[i]
+			  index++
 			}
+	
 		}
-		}
+	}
 
 }
 if (index>0){
