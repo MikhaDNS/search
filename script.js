@@ -4,6 +4,8 @@ function isValidURL(string) {
 };
 
 function rez_sitemap(){
+document.getElementById("one").innerHTML="Ждите.."
+document.getElementById("one").style.background = "red";
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
 let k=0
@@ -60,11 +62,15 @@ for(k;k<stringArray.length; k++){
 
 }
 document.getElementById("work_area").innerHTML +='<h1>Поиск завершен!</h1>';
+document.getElementById("one").innerHTML="Искать все ссылки"
+document.getElementById("one").style.background = "#2b995b";
 }
 
 
 
 function rez_random(){
+	document.getElementById("two").innerHTML="Ждите.."
+document.getElementById("two").style.background = "red";
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
 let element=[];
@@ -121,4 +127,6 @@ if (index>0){
 }else{
 	alert('Нет доступных ссылок!')
 }
+document.getElementById("two").innerHTML="Случайная ссылка"
+document.getElementById("two").style.background = "#2b995b";
 }
