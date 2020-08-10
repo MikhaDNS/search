@@ -18,10 +18,11 @@ for(k;k<stringArray.length; k++){
 		let url1 = new URL(stringArray[k])
 		let url2 = new URL(stringArray[k])
 		url1 = 'https://cors-anywhere.herokuapp.com/' + url
-		url = url1
 		if(url.pathname=="/"){
-			 url2 = url +'sitemap.xml'
+			 url2 = url1 +'sitemap.xml'
 			 url=url2
+		}else{
+			url = url1
 		}
 		let error=0;
 		const xml = new window.XMLHttpRequest()
@@ -30,6 +31,7 @@ for(k;k<stringArray.length; k++){
 		try{
 			xml.send(null);
 		}catch(e){
+			alert(e)
 			arrayHtml += '<p><font color="red">Адрес №'+k+' Не удалось установить соединение: <strong>'+ host + '</strong></font></p>';
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
@@ -62,8 +64,6 @@ document.getElementById("work_area").innerHTML +='<h1>Поиск заверше�
 
 
 
-
-
 function rez_random(){
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
@@ -78,9 +78,13 @@ for(k;k<stringArray.length; k++){
 		let url = new URL(stringArray[k])
 		let host = url.hostname
 		let url1 = new URL(stringArray[k])
+		let url2 = new URL(stringArray[k])
+		url1 = 'https://cors-anywhere.herokuapp.com/' + url
 		if(url.pathname=="/"){
-			 url1 = url +'sitemap.xml'
-			 url=url1
+			 url2 = url1 +'sitemap.xml'
+			 url=url2
+		}else{
+			url = url1
 		}
 		let error=0;
 		const xml = new window.XMLHttpRequest()
@@ -113,33 +117,8 @@ for(k;k<stringArray.length; k++){
 }
 if (index>0){
 	let randval = Math.floor(Math.random() * index)
-	document.getElementById("rnd_area").innerHTML ='<a target="_blanc" href="' + element[randval] + '" ><h1>Случайная ссылка!</h1></a>';
+	document.getElementById("rnd_area").innerHTML ='<a target="_blanc" href="' + element[randval] + '" ><h1> Случайная ссылка!</h1></a>';
 }else{
 	alert('Нет доступных ссылок!')
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
