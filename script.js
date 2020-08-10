@@ -50,7 +50,7 @@ for(k;k<stringArray.length; k++){
 				arrayHtml += '<h1> '+host +'</h1>';
 				for (var i=0; i<urls.length; i++) {
 				  let element = urls[i]
-					arrayHtml += '<a target="_blanc" href="' + element + '" >'+ element + '</a><br>'
+					arrayHtml += '<a target="_blank" href="' + element + '" >'+ element + '</a><br>'
 				}
 				arrayHtml+='<hr>'
 				document.getElementById("work_area").innerHTML=arrayHtml
@@ -113,7 +113,7 @@ for(k;k<stringArray.length; k++){
 				}
 				if (index>0){
 					let randval = Math.floor(Math.random() * index)
-					document.getElementById("rnd_area").innerHTML ='<a target="_blanc" href="' + element[randval] + '" ><h1> Случайная ссылка!</h1></a>';
+					document.getElementById("rnd_area").innerHTML ='<a target="_blank" href="' + element[randval] + '" ><h1> '+element[randval]+'</h1></a>';
 				}
 		  }
 
