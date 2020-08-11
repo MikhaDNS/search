@@ -25,7 +25,6 @@ for(k;k<stringArray.length; k++){
 			url = url1
 		}
 			const xml = new window.XMLHttpRequest()
-	        alert(url)
 		xml.open("GET", url, true)
 		xml.send();
 		xml.onreadystatechange = function() { // (3)
@@ -75,7 +74,6 @@ function rez_random(){
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
 let element=[];
-let randval
 let address
 let index=0
 let k=0
@@ -117,7 +115,7 @@ for(k;k<stringArray.length; k++){
 	
 				}
 				if (index>0){
-					randval = Math.floor(Math.random() * index)	
+					let randval = Math.floor(Math.random() * index)	
 					document.getElementById("rnd_area").innerHTML ='<a target="_blank" href="' + element[randval] + '" ><h1> '+randval+'</h1></a>';
 				}
 		  }
