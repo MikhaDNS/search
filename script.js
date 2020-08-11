@@ -11,6 +11,7 @@ for(k;k<stringArray.length; k++){
 	if(isValidURL(stringArray[k])){
           address=stringArray[k]
 	   }else{
+		   alert('no')
 	address='http://'+stringArray[k]
 	   }
 	if(!isValidURL(address)){
