@@ -99,6 +99,7 @@ for(k;k<stringArray.length; k++){
 		xml.send();
 		xml.onreadystatechange = function() { // (3)
 		  if (xml.readyState != 4) return;
+		document.getElementById("rnd_area").style.display='inline-block';
 		document.getElementById("two").innerHTML="Случайная ссылка"
 		document.getElementById("two").style.background = "#2b995b";
 
@@ -115,7 +116,7 @@ for(k;k<stringArray.length; k++){
 				}
 				if (index>0){
 					let randval = Math.floor(Math.random() * index)	
-					document.getElementById("rnd_area").innerHTML ='<a target="_blank" href="' + element[randval] + '" ><h1> '+randval+'</h1></a>';
+					document.getElementById("rnd_area").innerHTML ='<a target="_blank" href="' + element[randval] + '" ><h1> '+element[randval]+'</h1></a>';
 				}
 		  }
 
@@ -125,7 +126,6 @@ for(k;k<stringArray.length; k++){
 	}
 
 }
-	document.getElementById("rnd_area").style.display='inline-block';
 }
 
 
