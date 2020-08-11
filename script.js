@@ -7,7 +7,7 @@ let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
 let k=0
 for(k;k<stringArray.length; k++){
-	if(!isValidURL(stringArray[k])){
+	if(!isValidURL('http://'+stringArray[k])){
 		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
 		document.getElementById("work_area").innerHTML=arrayHtml
