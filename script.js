@@ -102,7 +102,6 @@ for(k;k<stringArray.length; k++){
 		xml.onreadystatechange = function() { // (3)
 		  if (xml.readyState != 4) return;
 		document.getElementById("rnd_area").style.display='inline-block';
-		document.getElementById("rnd_area").innerHTML ='<a target="_blank" href="' + element[randval] + '" ><h1> '+randval+'</h1></a>';
 		document.getElementById("two").innerHTML="Случайная ссылка"
 		document.getElementById("two").style.background = "#2b995b";
 
@@ -118,7 +117,8 @@ for(k;k<stringArray.length; k++){
 	
 				}
 				if (index>0){
-					randval = Math.floor(Math.random() * index)					
+					randval = Math.floor(Math.random() * index)	
+					document.getElementById("rnd_area").innerHTML ='<a target="_blank" href="' + element[randval] + '" ><h1> '+randval+'</h1></a>';
 				}
 		  }
 
@@ -149,11 +149,9 @@ for(k;k<stringArray.length; k++){
 	}else{
 		let url = new URL(address)
 		let host = url.hostname
-		let url1 = new URL(address)
 		let urlsave = new URL(address)
 		urlsave=url + 'robots.txt'
 		url = 'https://cors-anywhere.herokuapp.com/' + url  + 'robots.txt'
-		alert(url)
 		const xml = new window.XMLHttpRequest()
 		xml.open("GET", url, true)
 		xml.send();
