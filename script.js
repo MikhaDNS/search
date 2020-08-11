@@ -13,10 +13,8 @@ let arrayHtml=""
 let k=0
 for(k;k<stringArray.length; k++){
 	if(isValidhttp(stringArray[k])){
-		alert('yes')
           address=stringArray[k]
 	   }else{
-		   alert('no')
 	address='http://'+stringArray[k]
 	   }
 	if(!isValidURL(address)){
@@ -88,7 +86,7 @@ let address
 let index=0
 let k=0
 for(k;k<stringArray.length; k++){
-	if(isValidURL(stringArray[k])){
+	if(isValidhttp(stringArray[k])){
           address=stringArray[k]
 	   }else{
 	address='http://'+stringArray[k]
@@ -153,7 +151,7 @@ let arrayHtml="";
 let address
 let k=0
 for(k;k<stringArray.length; k++){
-	if(isValidURL(stringArray[k])){
+	if(isValidhttp(stringArray[k])){
           address=stringArray[k]
 	   }else{
 	address='http://'+stringArray[k]
