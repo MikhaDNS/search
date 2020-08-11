@@ -24,6 +24,7 @@ for(k;k<stringArray.length; k++){
 			url = url1
 		}
 			const xml = new window.XMLHttpRequest()
+	        alert(url)
 		xml.open("GET", url, true)
 		xml.send();
 		xml.onreadystatechange = function() { // (3)
