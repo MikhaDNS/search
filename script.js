@@ -3,7 +3,7 @@ function isValidURL(string) {
   return (res !== null)
 };
 function isValidhttp(string) {
-  let res = string.match(/(http(s)?:\\\\)/g);
+  let res = string.match(/(http(s)?:\/\//g);
   return (res !== null)
 };
 function rez_sitemap(){
