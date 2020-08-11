@@ -9,6 +9,7 @@ let arrayHtml=""
 let k=0
 for(k;k<stringArray.length; k++){
 	if(isValidURL(stringArray[k])){
+		alert('yes')
           address=stringArray[k]
 	   }else{
 		   alert('no')
