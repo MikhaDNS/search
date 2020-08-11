@@ -75,21 +75,24 @@ function rez_random(){
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
 let element=[];
+let randval
+let address
 let index=0
 let k=0
 for(k;k<stringArray.length; k++){
+	address='http://'+stringArray[k]
 	if(!isValidURL(stringArray[k])){
 		arrayHtml += '<p><font color="red">Адрес №'+k+' Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
+		arrayHtml+='<hr>'
+		document.getElementById("rnd_area").style.display='inline-block';
 		document.getElementById("rnd_area").innerHTML=arrayHtml
 	}else{
-		let url = new URL(stringArray[k])
+		let url = new URL(address)
 		let host = url.hostname
-		let url1 = new URL(stringArray[k])
-		let url2 = new URL(stringArray[k])
+		let url1 = new URL(address)
 		url1 = 'https://cors-anywhere.herokuapp.com/' + url
 		if(url.pathname=="/"){
-			 url2 = url1 +'sitemap.xml'
-			 url=url2
+			 url = url1 +'sitemap.xml'
 		}else{
 			url = url1
 		}
@@ -99,6 +102,7 @@ for(k;k<stringArray.length; k++){
 		xml.onreadystatechange = function() { // (3)
 		  if (xml.readyState != 4) return;
 		document.getElementById("rnd_area").style.display='inline-block';
+		document.getElementById("rnd_area").innerHTML ='<a target="_blank" href="' + element[randval] + '" ><h1> '+randval+'</h1></a>';
 		document.getElementById("two").innerHTML="Случайная ссылка"
 		document.getElementById("two").style.background = "#2b995b";
 
@@ -114,8 +118,7 @@ for(k;k<stringArray.length; k++){
 	
 				}
 				if (index>0){
-					let randval = Math.floor(Math.random() * index)
-					document.getElementById("rnd_area").innerHTML ='<a target="_blank" href="' + element[randval] + '" ><h1> '+element[randval]+'</h1></a>';
+					randval = Math.floor(Math.random() * index)					
 				}
 		  }
 
@@ -135,20 +138,22 @@ for(k;k<stringArray.length; k++){
 function rez_robots(){
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
+let address
 let k=0
 for(k;k<stringArray.length; k++){
+	address='http://'+stringArray[k]
 	if(!isValidURL(stringArray[k])){
 		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
 		document.getElementById("work_area").innerHTML=arrayHtml
 	}else{
-		let url = new URL(stringArray[k])
+		let url = new URL(address)
 		let host = url.hostname
-		let url1 = new URL(stringArray[k])
-		let urlsave = new URL(stringArray[k])
+		let url1 = new URL(address)
+		let urlsave = new URL(address)
 		urlsave=url + 'robots.txt'
-		url1 = 'https://cors-anywhere.herokuapp.com/' + url + 'robots.txt'
-		url = url1
+		url = 'https://cors-anywhere.herokuapp.com/' + url  + 'robots.txt'
+		alert(url)
 		const xml = new window.XMLHttpRequest()
 		xml.open("GET", url, true)
 		xml.send();
