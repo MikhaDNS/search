@@ -20,6 +20,7 @@ for(k;k<stringArray.length; k++){
 	}else{
 		url = new URL(address)
 		host = url.hostname
+		arrayHtml += '<h1> '+host +'</h1>';
 		url1 = new URL(address)
 		url1 = 'https://cors-anywhere.herokuapp.com/' + url
 		if(url.pathname=="/"){
