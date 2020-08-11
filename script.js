@@ -15,6 +15,7 @@ for(k;k<stringArray.length; k++){
 	if(!isValidURL(address)){
 		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
+		document.getElementById("work_area").style.display='inline-block';
 		document.getElementById("work_area").innerHTML=arrayHtml
 	}else{
 		url = new URL(address)
