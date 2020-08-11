@@ -2,13 +2,17 @@ function isValidURL(string) {
   let res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
   return (res !== null)
 };
+function isValidhttp(string) {
+  let res = string.match(/(http(s)?:\\\\/g);
+  return (res !== null)
+};
 function rez_sitemap(){
 let stringArray = document.getElementById('textarea').value.split('\n')
 let address
 let arrayHtml=""
 let k=0
 for(k;k<stringArray.length; k++){
-	if(isValidURL(stringArray[k])){
+	if(isValidhttp(stringArray[k])){
 		alert('yes')
           address=stringArray[k]
 	   }else{
