@@ -16,7 +16,7 @@ for(k;k<stringArray.length; k++){
 		let host = url.hostname
 		let url1 = new URL('http://'+stringArray[k])
 		let url2 = new URL('http://'+stringArray[k])
-		url1 = 'https://cors-anywhere.herokuapp.com/http://' + url
+		url1 = 'https://cors-anywhere.herokuapp.com/' + url
 		if(url.pathname=="/"){
 			 url2 = url1 +'sitemap.xml'
 			 url=url2
