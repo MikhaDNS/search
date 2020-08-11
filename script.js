@@ -1,5 +1,5 @@
 let str='sitemap: hbggggg\n Sitemap: ghgghhhv'
-let rezf = str.match(/(?<=[Ss]itemap:\s)(.+)/g)
+let rezf = str.match(/([Ss]itemap:\s)(.+)/g)
 alert(rezf)
 alert('hert')
 function isValidURL(string) {
