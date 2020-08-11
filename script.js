@@ -12,10 +12,10 @@ for(k;k<stringArray.length; k++){
 		arrayHtml+='<hr>'
 		document.getElementById("work_area").innerHTML=arrayHtml
 	}else{
-		let url = new URL(stringArray[k])
+		let url = new URL('http://'+stringArray[k])
 		let host = url.hostname
-		let url1 = new URL(stringArray[k])
-		let url2 = new URL(stringArray[k])
+		let url1 = new URL('http://'+stringArray[k])
+		let url2 = new URL('http://'+stringArray[k])
 		url1 = 'https://cors-anywhere.herokuapp.com/http://' + url
 		if(url.pathname=="/"){
 			 url2 = url1 +'sitemap.xml'
