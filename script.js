@@ -4,13 +4,14 @@ function isValidURL(string) {
 };
 function rez_sitemap(){
 let stringArray = document.getElementById('textarea').value.split('\n')
-let address='http://'+stringArray[k]
+let address
 let url
 let url1
 let host
 let arrayHtml=""
 let k=0
 for(k;k<stringArray.length; k++){
+	address='http://'+stringArray[k]
 	if(!isValidURL(address)){
 		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
