@@ -8,7 +8,7 @@ let address
 let arrayHtml=""
 let k=0
 for(k;k<stringArray.length; k++){
-	if(isValidURL(stringArray[k]){
+	if(isValidURL(stringArray[k])){
           address=stringArray[k]
 	   }else{
 	address='http://'+stringArray[k]
@@ -82,7 +82,7 @@ let address
 let index=0
 let k=0
 for(k;k<stringArray.length; k++){
-	if(isValidURL(stringArray[k]){
+	if(isValidURL(stringArray[k])){
           address=stringArray[k]
 	   }else{
 	address='http://'+stringArray[k]
@@ -147,7 +147,7 @@ let arrayHtml="";
 let address
 let k=0
 for(k;k<stringArray.length; k++){
-	if(isValidURL(stringArray[k]){
+	if(isValidURL(stringArray[k])){
           address=stringArray[k]
 	   }else{
 	address='http://'+stringArray[k]
