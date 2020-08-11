@@ -5,8 +5,6 @@ function isValidURL(string) {
 function rez_sitemap(){
 let stringArray = document.getElementById('textarea').value.split('\n')
 let address
-let url
-let url1
 let arrayHtml=""
 let k=0
 for(k;k<stringArray.length; k++){
@@ -17,9 +15,9 @@ for(k;k<stringArray.length; k++){
 		document.getElementById("work_area").style.display='inline-block';
 		document.getElementById("work_area").innerHTML=arrayHtml
 	}else{
-		url = new URL(address)
+		let url = new URL(address)
 		let host = url.hostname
-		url1 = new URL(address)
+		let url1 = new URL(address)
 		url1 = 'https://cors-anywhere.herokuapp.com/' + url
 		if(url.pathname=="/"){
 			 url = url1 +'sitemap.xml'
