@@ -8,7 +8,11 @@ let address
 let arrayHtml=""
 let k=0
 for(k;k<stringArray.length; k++){
+	if(isValidURL(stringArray[k]){
+          address=stringArray[k]
+	   }else{
 	address='http://'+stringArray[k]
+	   }
 	if(!isValidURL(address)){
 		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
@@ -78,7 +82,11 @@ let address
 let index=0
 let k=0
 for(k;k<stringArray.length; k++){
+	if(isValidURL(stringArray[k]){
+          address=stringArray[k]
+	   }else{
 	address='http://'+stringArray[k]
+	   }
 	if(!isValidURL(stringArray[k])){
 		arrayHtml += '<p><font color="red">Адрес №'+k+' Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
@@ -139,7 +147,11 @@ let arrayHtml="";
 let address
 let k=0
 for(k;k<stringArray.length; k++){
+	if(isValidURL(stringArray[k]){
+          address=stringArray[k]
+	   }else{
 	address='http://'+stringArray[k]
+	   }
 	if(!isValidURL(stringArray[k])){
 		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
