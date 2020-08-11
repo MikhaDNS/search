@@ -3,23 +3,25 @@ function isValidURL(string) {
   return (res !== null)
 };
 function rez_sitemap(){
-let stringArray = document.getElementById('textarea').value.split('\n');
-let arrayHtml="";
+let stringArray = document.getElementById('textarea').value.split('\n')
+let address='http://'+stringArray[k]
+let url
+let url1
+let host
+let arrayHtml=""
 let k=0
 for(k;k<stringArray.length; k++){
-	if(!isValidURL('http://'+stringArray[k])){
+	if(!isValidURL(address)){
 		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
 		document.getElementById("work_area").innerHTML=arrayHtml
 	}else{
-		let url = new URL('http://'+stringArray[k])
-		let host = url.hostname
-		let url1 = new URL('http://'+stringArray[k])
-		let url2 = new URL('http://'+stringArray[k])
+		url = new URL(address)
+		host = url.hostname
+		url1 = new URL(address)
 		url1 = 'https://cors-anywhere.herokuapp.com/' + url
 		if(url.pathname=="/"){
-			 url2 = url1 +'sitemap.xml'
-			 url=url2
+			 url = url1 +'sitemap.xml'
 		}else{
 			url = url1
 		}
