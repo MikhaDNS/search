@@ -7,9 +7,18 @@ function isValidhttp(string) {
   return (res !== null)
 };
 function isValidxml(string) {
-  let res = string.match(/\.xml$/g);
+  let res = string.match(/\.xml/g);
   return (res !== null)
 };
+function isValidfile(string) {
+  let res = string.match(/(\.\w*)$/g);
+  return (res !== null)
+};
+function isValidfileimage(string) {
+  let res = string.match(/\.(?:jpg|jpeg|png|bmp|ico|gif|tif|tiff)$/g);
+  return (res !== null)
+};
+
 function rez_sitemap(){
 let stringArray = document.getElementById('textarea').value.split('\n')
 let address
@@ -310,14 +319,43 @@ for(k;k<stringArray.length; k++){
 }	
 }
 
+function rez_file(){
+	let visio=[]
+		document.getElementById("work_area").style.display='inline-block';
+		for(let i=0; i<addrnew.length; i++){
+			if(isValidfile(addrnew[i])){
+				visio.push('<a target="_blank" href="' + addrnew[i] + '" >'+addrnew[i]+'</a><br>')
+			}
+		}
+		if(visio.length==0){
+			visio.push('Нет ссылок на файлы!')
+		}
+		document.getElementById("work_area").innerHTML=visio.join('')
+}
+
+function rez_fileimage(){
+	let visio=[]
+		document.getElementById("work_area").style.display='inline-block';
+		for(let i=0; i<addrnew.length; i++){
+			if(isValidfileimage(addrnew[i])){
+				visio.push('<a target="_blank" href="' + addrnew[i] + '" >'+addrnew[i]+'</a><br>')
+			}
+		}
+		if(visio.length==0){
+			visio.push('Нет ссылок на файлы изображений!')
+		}
+		document.getElementById("work_area").innerHTML=visio.join('')
+}
+
+
 function rez_visual(){
 	alert('Колличество не проиндексированных: '+errorlink)
-	let visio='<a target="_blank" href="' + addrnew[0] + '" >'+addrnew[0]+'</a><br>';
+	let visio=[]
 		document.getElementById("work_area").style.display='inline-block';
-		for(let i=1; i<addrnew.length; i++){
-			visio+='<a target="_blank" href="' + addrnew[i] + '" >'+addrnew[i]+'</a><br>';
+		for(let i=0; i<addrnew.length; i++){
+			visio.push('<a target="_blank" href="' + addrnew[i] + '" >'+addrnew[i]+'</a><br>')
 		}
-		document.getElementById("work_area").innerHTML=visio
+		document.getElementById("work_area").innerHTML=visio.join('')
 }
 
 function rez_randall(){
