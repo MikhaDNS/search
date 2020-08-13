@@ -291,7 +291,6 @@ for(k;k<stringArray.length; k++){
 				for (var i=0; i<urls.length; i++) {
 				  let element = urls[i]
 						if(isValidxml(element)){
-							alert(element)
 							  rez_func2(element,urls.length)
 							 	
 						}else{
