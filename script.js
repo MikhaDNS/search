@@ -322,7 +322,6 @@ function rez_visual(){
 }
 
 function rez_randall(){
-alert('Колличество не проиндексированных: '+errorlink)
 let randval = Math.floor(Math.random() * addrnew.length)	
 	if(addrnew.length==0){
 		alert('Нет доступных ссылок')
