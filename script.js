@@ -15,7 +15,7 @@ function isValidfile(string) {
   return (res !== null)
 };
 function isValidfileimage(string) {
-  let res = string.match(/\.(?:jpg|jpeg|png|bmp|ico|gif|tif|tiff)$/g);
+  let res = string.match(/\.(?:jpg|jpeg|png|bmp|ico|gif|tif|tiff)/g);
   return (res !== null)
 };
 
