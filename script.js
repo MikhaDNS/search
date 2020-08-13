@@ -6,6 +6,10 @@ function isValidhttp(string) {
   let res = string.match(/(http(s)?:)/g);
   return (res !== null)
 };
+function isValidxml(string) {
+  let res = string.match(/.xml$/g);
+  return (res !== null)
+};
 function rez_sitemap(){
 let stringArray = document.getElementById('textarea').value.split('\n')
 let address
@@ -16,6 +20,11 @@ for(k;k<stringArray.length; k++){
           address=stringArray[k]
 	   }else{
 	address='http://'+stringArray[k]
+	   }
+	if(isValidxml(address)){
+          alert('xml')
+	   }else{
+	alert('not')
 	   }
 	if(!isValidURL(address)){
 		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
