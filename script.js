@@ -357,6 +357,19 @@ function rez_visual(){
 		}
 		document.getElementById("work_area").innerHTML=visio.join('')
 }
+function rez_imgout(){
+	let visio=[]
+		document.getElementById("work_area").style.display='inline-block';
+		for(let i=0; i<addrnew.length; i++){
+				if(isValidfileimage(addrnew[i])){
+					visio.push('<a href="'+addrnew[i]+'" target="_blank"><img src="'+addrnew[i]+'"></a>')
+				}
+		}
+		if(visio.length==0){
+			visio.push('Нет ссылок на файлы изображений!')
+		}
+		document.getElementById("work_area").innerHTML=visio.join('')
+}
 
 function rez_randall(){
 let randval = Math.floor(Math.random() * addrnew.length)	
