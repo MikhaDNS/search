@@ -7,7 +7,7 @@ function isValidhttp(string) {
   return (res !== null)
 };
 function isValidxml(string) {
-  let res = string.match(/.xml$/g);
+  let res = string.match(/\.xml$/g);
   return (res !== null)
 };
 function rez_sitemap(){
@@ -291,6 +291,7 @@ for(k;k<stringArray.length; k++){
 				for (var i=0; i<urls.length; i++) {
 				  let element = urls[i]
 						if(isValidxml(element)){
+							alert(element)
 							  rez_func2(element,urls.length)
 							 	
 						}else{
