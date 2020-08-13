@@ -80,8 +80,6 @@ for(k;k<stringArray.length; k++){
 
 }
 
-
-
 function rez_random(){
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
@@ -144,11 +142,6 @@ for(k;k<stringArray.length; k++){
 }
 }
 
-
-
-
-
-
 function rez_robots(){
 let stringArray = document.getElementById('textarea').value.split('\n');
 let arrayHtml="";
@@ -197,5 +190,172 @@ for(k;k<stringArray.length; k++){
 	}
 
 }
+
+}
+
+let errorlink=0
+
+let count=0;
+
+let addrnew=[]
+
+function rez_func2(stringArray,breakp){
+let address
+	if(isValidhttp(stringArray)){
+          address=stringArray
+	   }else{
+	address='http://'+stringArray
+	   }
+	if(isValidURL(address)){
+		let url = new URL(address)
+		let host = url.hostname
+		let url1 = new URL(address)
+		url1 = 'https://cors-anywhere.herokuapp.com/' + url
+		url = url1
+		const xml = new window.XMLHttpRequest()
+		xml.open("GET", url, true)
+		xml.send();
+		xml.onreadystatechange = function() {
+		// (3)
+		  if (xml.readyState != 4) return;
+		  if (xml.status == 200) {
+			  count++
+			let parser = new DOMParser()
+			let xml1 = parser.parseFromString(xml.response, 'application/xml')
+
+			let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
+			if(urls!=null){
+				for (var i=0; i<urls.length; i++) {
+				  let element = urls[i]
+				  if(!isValidxml(element)){
+					addrnew.push(element)
+				  }else{
+					  errorlink++
+				  }
+				}
+				
+			
+			}
+					if(count==breakp){
+						count=0
+						document.getElementById("neww").innerHTML="Все ссылки в корнях сайта"
+						document.getElementById("neww").style.background = "#2b995b";
+					}
+
+			}
+
+		}
+		document.getElementById("neww").innerHTML="Ждите.."
+		document.getElementById("neww").style.background = "red";
+	}
+}
+
+function rez_func(){
+ addrnew=[]
+let stringArray = document.getElementById('textarea').value.split('\n')
+let address
+let k=0
+count=0
+errorlink=0
+for(k;k<stringArray.length; k++){
+	if(isValidhttp(stringArray[k])){
+          address=stringArray[k]
+	   }else{
+	address='http://'+stringArray[k]
+	   }
+	if(isValidURL(address)){
+		let url = new URL(address)
+		let host = url.hostname
+		let url1 = new URL(address)
+		url1 = 'https://cors-anywhere.herokuapp.com/' + url
+		if(url.pathname=="/"){
+			 url = url1 +'sitemap.xml'
+		}else{
+			url = url1
+		}
+		const xml = new window.XMLHttpRequest()
+		xml.open("GET", url, true)
+		xml.send();
+		xml.onreadystatechange = function() { // (3)
+		  if (xml.readyState != 4) return;
+
+			document.getElementById("neww").innerHTML="Все ссылки в корнях сайта"
+			document.getElementById("neww").style.background = "#2b995b";
+		  if (xml.status == 200) {
+			addrnew.push('http://'+host)
+			let parser = new DOMParser()
+			let xml1 = parser.parseFromString(xml.response, 'application/xml')
+
+			let urls = Array.from(xml1.querySelectorAll('loc')).map(x => x.textContent)
+			if(urls!=null){
+				for (var i=0; i<urls.length; i++) {
+				  let element = urls[i]
+						if(isValidxml(element)){
+							  rez_func2(element,urls.length)
+							 	
+						}else{
+							addrnew.push(element)
+						}
+				}
+			}
+			}
+
+		}
+		document.getElementById("neww").innerHTML="Ждите.."
+		document.getElementById("neww").style.background = "red";
+
+	}
+
+
+}	
+}
+
+function rez_visual(){
+	alert('Колличество не проиндексированных: '+errorlink)
+	let visio='<a target="_blank" href="' + addrnew[0] + '" >'+addrnew[0]+'</a><br>';
+		document.getElementById("work_area").style.display='inline-block';
+		for(let i=1; i<addrnew.length; i++){
+			visio+='<a target="_blank" href="' + addrnew[i] + '" >'+addrnew[i]+'</a><br>';
+		}
+		document.getElementById("work_area").innerHTML=visio
+}
+
+function rez_randall(){
+alert('Колличество не проиндексированных: '+errorlink)
+let randval = Math.floor(Math.random() * addrnew.length)	
+	if(addrnew.length==0){
+		alert('Нет доступных ссылок')
+	}else{
+	if(!isValidURL(addrnew[randval])){
+		alert('error')
+	}else{
+		let url = new URL(addrnew[randval])
+		let host = url.hostname
+		let url1 = new URL(addrnew[randval])
+		url1 = 'https://cors-anywhere.herokuapp.com/' + url
+		url=url1
+		const xml = new window.XMLHttpRequest()
+		xml.open("GET", url, true)
+		xml.send();
+		xml.onreadystatechange = function() { // (3)
+		  if (xml.readyState != 4) return;
+			document.getElementById("rnd").innerHTML="Случайная ссылка с корнями"
+			document.getElementById("rnd").style.background = "#2b995b";
+		  if (xml.status == 200){
+			 let parser = new DOMParser()
+			let xml1 = parser.parseFromString(xml.responseText, 'text/html')
+			let finded = xml1.querySelector('title').innerHTML
+			document.getElementById("rnd_area").style.display='inline-block';
+			document.getElementById("rnd_area").innerHTML ='<a target="_blank" href="' + addrnew[randval] + '" ><h1> '+finded+'</h1></a>';
+			}else{
+				alert('Ошибка подключения')
+			}
+
+		}
+		document.getElementById("rnd").innerHTML="Ждите.."
+		document.getElementById("rnd").style.background = "red";
+
+	}
+	}
 
 }
