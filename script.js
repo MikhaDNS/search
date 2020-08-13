@@ -21,11 +21,6 @@ for(k;k<stringArray.length; k++){
 	   }else{
 	address='http://'+stringArray[k]
 	   }
-	if(isValidxml(address)){
-          alert('xml')
-	   }else{
-	alert('not')
-	   }
 	if(!isValidURL(address)){
 		arrayHtml += '<p><font color="red">Ошибка в адресе: <strong>'+ stringArray[k] + '</strong></font></p>';
 		arrayHtml+='<hr>'
