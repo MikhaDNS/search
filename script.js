@@ -19,7 +19,7 @@ function isValidfileimage(string) {
   return (res !== null)
 };
 function isValidfilesitemap(string) {
-  let res = string.match(/([Ss]itemap: ).*/g);
+  let res = string.match(/([Ss]itemap: .*)/g);
   return (res)
 };
 function rez_sitemap(){
