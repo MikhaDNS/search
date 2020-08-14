@@ -18,7 +18,10 @@ function isValidfileimage(string) {
   let res = string.match(/(?:\.|=)(?:jpg|jpeg|png|bmp|ico|gif|tif|tiff)/g);
   return (res !== null)
 };
-
+function isValidfilesitemap(string) {
+  let res = string.match(/(?<=[Ss]itemap: ).*/g);
+  return (res)
+};
 function rez_sitemap(){
 let stringArray = document.getElementById('textarea').value.split('\n')
 let address
@@ -187,6 +190,7 @@ for(k;k<stringArray.length; k++){
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
 		  } else {
+			 alert(isValidfilesitemap(xml.response))
 			arrayHtml += '<a target="_blank" href="' + urlsave + '" >'+ urlsave + '</a><br>'
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
