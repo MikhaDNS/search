@@ -1,3 +1,4 @@
+"use strict";
 function isValidURL(string) {
   let res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
   return (res !== null)
@@ -190,10 +191,11 @@ for(k;k<stringArray.length; k++){
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
 		  } else {
-			 alert(isValidfilesitemap(xml.response))
 			arrayHtml += '<a target="_blank" href="' + urlsave + '" >'+ urlsave + '</a><br>'
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
+			document.getElementById('textarea').value+='\n'
+			document.getElementById('textarea').value+=isValidfilesitemap(xml.response).join('\n')
 			}
 
 		}
