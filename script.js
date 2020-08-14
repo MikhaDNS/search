@@ -1,3 +1,4 @@
+"use strict";
 function isValidURL(string) {
   let res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
   return (res !== null)
@@ -19,7 +20,7 @@ function isValidfileimage(string) {
   return (res !== null)
 };
 function isValidfilesitemap(string) {
-  let res = string.match(/([Ss]itemap: .*)/g);
+  let res = string.match(/(?<=([Ss]itemap: ).*)/g);
   return (res)
 };
 function rez_sitemap(){
