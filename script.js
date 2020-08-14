@@ -1,6 +1,3 @@
-let str = "1 индейка стоит 30€";
-
-alert( str.match(/\d+(?=€)/) );
 function isValidURL(string) {
   let res = string.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
   return (res !== null)
@@ -23,6 +20,12 @@ function isValidfileimage(string) {
 };
 function isValidfilesitemap(string) {
   let res = string.match(/([Ss]itemap: .*)/g);
+  if (res != null){
+	  res=res.join('');
+	  res = res.replace(/([Ss]itemap: )/g,'\n')
+  }else{
+	  res='\nНет sitemap в robots'
+  }
   return (res)
 };
 function rez_sitemap(){
@@ -196,8 +199,7 @@ for(k;k<stringArray.length; k++){
 			arrayHtml += '<a target="_blank" href="' + urlsave + '" >'+ urlsave + '</a><br>'
 			arrayHtml+='<hr>'
 			document.getElementById("work_area").innerHTML=arrayHtml
-			document.getElementById('textarea').value+='\n'
-			document.getElementById('textarea').value+=isValidfilesitemap(xml.response).join('\n')
+			document.getElementById('textarea').value+=isValidfilesitemap(xml.response)
 			}
 
 		}
